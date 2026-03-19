@@ -46,7 +46,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: win11craft-iso
-          path: EndeavourOS-ISO/out/*.iso
+          path: |
+            out/*.iso
+            EndeavourOS-ISO/out/*.iso
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -55,4 +57,6 @@ jobs:
           name: "Win11Craft build ${{ github.run_number }}"
           prerelease: true
           generate_release_notes: true
-          files: EndeavourOS-ISO/out/*.iso
+          files: |
+            out/*.iso
+            EndeavourOS-ISO/out/*.iso
