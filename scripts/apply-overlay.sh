@@ -15,7 +15,7 @@ if [ ! -d "$ROOT_DIR/overlay" ]; then
 fi
 
 echo "[1/3] Copy overlay to EndeavourOS-ISO"
-rsync -a --delete "$ROOT_DIR/overlay/" "$EOS_DIR/"
+rsync -a "$ROOT_DIR/overlay/" "$EOS_DIR/"
 
 echo "[1/3a] Fix permissions and enable services"
 chmod +x "$EOS_DIR/airootfs/usr/local/bin/"* || true
