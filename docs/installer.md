@@ -22,10 +22,9 @@ The installer is Calamares (EndeavourOS fork). This repo customizes partitioning
 
 ## Calamares configs
 
-- `overlay/airootfs/etc/calamares/modules/partition.conf`
-- `overlay/airootfs/etc/calamares/modules/bootloader.conf`
-- `overlay/airootfs/etc/calamares/modules/users.conf`
-- `overlay/airootfs/etc/calamares/branding/win11/branding.desc`
+- `overlay/airootfs/usr/share/win11/calamares/modules/partition.conf`
+- `overlay/airootfs/usr/share/win11/calamares/modules/bootloader.conf`
+- `overlay/airootfs/usr/share/win11/calamares/branding/win11/branding.desc`
 
 ## Windows safety notes
 

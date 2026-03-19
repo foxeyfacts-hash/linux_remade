@@ -26,6 +26,7 @@ The ISO will be created in the EndeavourOS-ISO `out/` directory.
 Search and replace the placeholder name `Win11Craft OS` in:
 
 - `overlay/airootfs/etc/calamares/branding/win11/branding.desc`
+- `overlay/airootfs/usr/share/win11/calamares/branding/win11/branding.desc`
 - `overlay/airootfs/etc/os-release`
 - `overlay/airootfs/usr/share/sddm/themes/win11/theme.conf`
 - `overlay/airootfs/usr/share/plasma/look-and-feel/com.win11.theme/metadata.json`
