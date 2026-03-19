@@ -29,7 +29,6 @@ winetricks
 # Minecraft
 prismlauncher
 jdk-openjdk
-jre-openjdk
 
 # UI and apps
 kvantum
@@ -59,3 +58,7 @@ os-prober
 kdialog
 kde-cli-tools
 qt5-tools
+
+# Provider selections to avoid pacman prompts in CI
+qt6-multimedia-ffmpeg
+systemd-resolvconf
