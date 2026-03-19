@@ -9,6 +9,14 @@ if [ ! -d "$EOS_DIR/.git" ]; then
   git clone https://github.com/endeavouros-team/EndeavourOS-ISO.git "$EOS_DIR"
 fi
 
+# CI-safe: disable EOS pre-squash hook that requires online mirror ranking
+cat > "$EOS_DIR/run_before_squashfs.sh" <<'EOF'
+#!/usr/bin/env bash
+# Minimal hook for CI container builds
+exit 0
+EOF
+chmod +x "$EOS_DIR/run_before_squashfs.sh"
+
 if ! id builder >/dev/null 2>&1; then
   useradd -m -G wheel builder
   echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
