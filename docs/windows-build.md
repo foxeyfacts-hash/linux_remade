@@ -11,6 +11,18 @@ This repo includes a CI workflow that builds the ISO on a Linux runner. You only
 3. Run the workflow: **Build ISO**.
 4. Download the artifact `win11craft-iso` from the workflow run.
 
+The ISO is split into parts (GitHub has a 2GB per-file limit). Recombine:
+
+Windows (PowerShell):
+```powershell
+copy /b EndeavourOS_Titan-*.iso.part00+EndeavourOS_Titan-*.iso.part01+EndeavourOS_Titan-*.iso.part02 EndeavourOS_Titan.iso
+```
+
+Linux:
+```bash
+cat EndeavourOS_Titan-*.iso.part* > EndeavourOS_Titan.iso
+```
+
 Workflow file:
 - `.github/workflows/build-iso.yml`
 

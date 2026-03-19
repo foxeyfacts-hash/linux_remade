@@ -42,13 +42,29 @@ jobs:
           chmod +x scripts/*.sh
           ./scripts/build-iso-ci.sh
 
+      - name: Split ISO for upload (GitHub 2GB limit)
+        run: |
+          ISO_PATH=$(ls out/*.iso 2>/dev/null | head -n1 || true)
+          if [ -z "$ISO_PATH" ]; then
+            ISO_PATH=$(ls EndeavourOS-ISO/out/*.iso 2>/dev/null | head -n1 || true)
+          fi
+          if [ -z "$ISO_PATH" ]; then
+            echo "ISO not found"
+            exit 1
+          fi
+          sha256sum "$ISO_PATH" > "$ISO_PATH.sha256"
+          # split into ~1.9GB parts to fit GitHub asset limits
+          split -b 1900m -d -a 2 "$ISO_PATH" "$ISO_PATH.part"
+
       - name: Upload ISO
         uses: actions/upload-artifact@v4
         with:
-          name: win11craft-iso
+          name: win11craft-iso-parts
           path: |
-            out/*.iso
-            EndeavourOS-ISO/out/*.iso
+            out/*.iso.part*
+            out/*.iso.sha256
+            EndeavourOS-ISO/out/*.iso.part*
+            EndeavourOS-ISO/out/*.iso.sha256
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -58,5 +74,7 @@ jobs:
           prerelease: true
           generate_release_notes: true
           files: |
-            out/*.iso
-            EndeavourOS-ISO/out/*.iso
+            out/*.iso.part*
+            out/*.iso.sha256
+            EndeavourOS-ISO/out/*.iso.part*
+            EndeavourOS-ISO/out/*.iso.sha256
