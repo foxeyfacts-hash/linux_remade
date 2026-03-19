@@ -28,12 +28,8 @@ jobs:
         run: |
           pacman -S --noconfirm curl
           curl -fsSL https://raw.githubusercontent.com/endeavouros-team/PKGBUILDS/master/endeavouros-mirrorlist/endeavouros-mirrorlist -o /etc/pacman.d/endeavouros-mirrorlist
-          if ! grep -q "^\[endeavouros\]" /etc/pacman.conf; then
-            cat >> /etc/pacman.conf <<'EOF'
-[endeavouros]
-SigLevel = Optional TrustAll
-Include = /etc/pacman.d/endeavouros-mirrorlist
-EOF
+          if ! grep -q '^\[endeavouros\]' /etc/pacman.conf; then
+            printf "\n[endeavouros]\nSigLevel = Optional TrustAll\nInclude = /etc/pacman.d/endeavouros-mirrorlist\n" >> /etc/pacman.conf
           fi
           pacman -Sy --noconfirm endeavouros-keyring endeavouros-mirrorlist
 
