@@ -32,8 +32,8 @@ jdk-openjdk
 jre-openjdk
 
 # UI and apps
+kvantum
 kvantum-qt5
-kvantum-qt6
 kcalc
 kwrite
 discover
