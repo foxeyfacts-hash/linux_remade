@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Fallback for run_before_squashfs.sh in CI containers
+exit 0

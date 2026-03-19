@@ -1,0 +1,10 @@
+[Unit]
+Description=Win11Craft Calamares config setup
+ConditionPathExists=/run/archiso
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/win11-calamares-setup
+
+[Install]
+WantedBy=multi-user.target

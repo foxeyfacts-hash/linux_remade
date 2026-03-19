@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only in live ISO environment
+if [ ! -d /run/archiso ]; then
+  exit 0
+fi
+
+mkdir -p /etc/calamares
+cp -a /usr/share/win11/calamares/. /etc/calamares/
+
+touch /etc/calamares/.win11

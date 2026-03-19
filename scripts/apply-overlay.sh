@@ -24,16 +24,8 @@ chmod +x "$EOS_DIR/airootfs/etc/skel/.config/plasma-workspace/env/"* || true
 
 mkdir -p "$EOS_DIR/airootfs/etc/systemd/system/graphical.target.wants"
 ln -sf ../win11-setupuser.service "$EOS_DIR/airootfs/etc/systemd/system/graphical.target.wants/win11-setupuser.service"
-
-# Inject Calamares config after package install to avoid pacman file conflicts
-RUN_BEFORE="$EOS_DIR/run_before_squashfs.sh"
-if [ -f "$RUN_BEFORE" ] && ! grep -q "WIN11 CALAMARES COPY" "$RUN_BEFORE"; then
-  cat >> "$RUN_BEFORE" <<'EOF'
-
-# WIN11 CALAMARES COPY
-arch_chroot "${script_path}/${work_dir}/x86_64/airootfs" /bin/bash -c 'mkdir -p /etc/calamares; cp -a /usr/share/win11/calamares/. /etc/calamares/'
-EOF
-fi
+mkdir -p "$EOS_DIR/airootfs/etc/systemd/system/multi-user.target.wants"
+ln -sf ../win11-calamares-setup.service "$EOS_DIR/airootfs/etc/systemd/system/multi-user.target.wants/win11-calamares-setup.service"
 
 echo "[2/3] Add extra packages"
 if [ -f "$ROOT_DIR/packages/extra-packages.txt" ]; then
