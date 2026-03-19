@@ -9,9 +9,15 @@ if [ ! -d "$EOS_DIR/.git" ]; then
   git clone https://github.com/endeavouros-team/EndeavourOS-ISO.git "$EOS_DIR"
 fi
 
-pushd "$EOS_DIR" >/dev/null
-./prepare.sh
-popd >/dev/null
+if ! id builder >/dev/null 2>&1; then
+  useradd -m -G wheel builder
+  echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
+  chmod 0440 /etc/sudoers.d/builder
+fi
+
+chown -R builder:builder "$EOS_DIR"
+
+su - builder -c "cd \"$EOS_DIR\" && ./prepare.sh"
 
 "$ROOT_DIR/scripts/apply-overlay.sh" "$EOS_DIR"
 

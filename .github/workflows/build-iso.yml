@@ -20,11 +20,26 @@ jobs:
       - name: Prepare pacman keyring
         run: |
           pacman -Sy --noconfirm archlinux-keyring
+          pacman-key --init
+          pacman-key --populate archlinux
           pacman -Syu --noconfirm
+
+      - name: Enable EndeavourOS repository
+        run: |
+          pacman -S --noconfirm curl
+          curl -fsSL https://raw.githubusercontent.com/endeavouros-team/PKGBUILDS/master/endeavouros-mirrorlist/endeavouros-mirrorlist -o /etc/pacman.d/endeavouros-mirrorlist
+          if ! grep -q "^\[endeavouros\]" /etc/pacman.conf; then
+            cat >> /etc/pacman.conf <<'EOF'
+[endeavouros]
+SigLevel = Optional TrustAll
+Include = /etc/pacman.d/endeavouros-mirrorlist
+EOF
+          fi
+          pacman -Sy --noconfirm endeavouros-keyring endeavouros-mirrorlist
 
       - name: Install build deps
         run: |
-          pacman -S --noconfirm archiso git rsync squashfs-tools sudo
+          pacman -S --noconfirm archiso git rsync squashfs-tools sudo base-devel wget imagemagick
 
       - name: Build ISO
         run: |
