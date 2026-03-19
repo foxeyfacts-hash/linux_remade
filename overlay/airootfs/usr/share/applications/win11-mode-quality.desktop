@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Quality Mode
+Exec=pkexec /usr/local/bin/win11-mode quality
+Icon=preferences-desktop-theme
+Categories=System;Settings;

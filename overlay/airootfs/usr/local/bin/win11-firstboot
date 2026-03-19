@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MARKER="$HOME/.config/win11/firstboot.done"
+
+if [ "$(id -un)" != "setup" ]; then
+  exit 0
+fi
+
+if [ -f "$MARKER" ]; then
+  exit 0
+fi
+
+mkdir -p "$(dirname "$MARKER")"
+
+USERNAME=$(kdialog --title "Welcome" --inputbox "Choose a username (lowercase, 3-16 chars):" "gamer") || exit 1
+
+if ! [[ "$USERNAME" =~ ^[a-z_][a-z0-9_-]{2,15}$ ]]; then
+  kdialog --error "Invalid username. Use lowercase letters, numbers, dashes, and underscores." || true
+  exit 1
+fi
+
+PASS1=$(kdialog --title "Set Password" --password "Create a password:") || exit 1
+PASS2=$(kdialog --title "Confirm Password" --password "Confirm password:") || exit 1
+
+if [ "$PASS1" != "$PASS2" ] || [ -z "$PASS1" ]; then
+  kdialog --error "Passwords did not match or were empty." || true
+  exit 1
+fi
+
+MODE=$(kdialog --title "Performance Mode" --radiolist "Select performance mode:" \
+  performance "Performance" off \
+  balanced "Balanced" on \
+  quality "Quality" off) || exit 1
+
+THEME=$(kdialog --title "Theme" --radiolist "Select theme:" \
+  win11 "Win11 Light" on \
+  win11-dark "Win11 Dark" off) || exit 1
+
+pkexec /usr/local/bin/win11-firstboot-root \
+  --username "$USERNAME" \
+  --password "$PASS1" \
+  --mode "$MODE" \
+  --theme "$THEME"
+
+if [ $? -ne 0 ]; then
+  kdialog --error "Setup failed. Please reboot and try again." || true
+  exit 1
+fi
+
+touch "$MARKER"
+
+kdialog --msgbox "Setup complete. You will be logged out now." || true
+qdbus org.kde.ksmserver /KSMServer logout 0 0 0

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Driver Updater
+Exec=pkexec /usr/local/bin/win11-driver-update
+Icon=system-software-update
+Categories=System;Settings;

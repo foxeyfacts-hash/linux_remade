@@ -1,0 +1,52 @@
+{
+  "font": {
+    "primary": "Segoe UI Variable",
+    "fallback": "Noto Sans, Cantarell, sans-serif"
+  },
+  "colors": {
+    "bg": {
+      "base": "#F3F3F3",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F7F7F7"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#5A5A5A"
+    },
+    "accent": {
+      "primary": "#0078D4",
+      "hover": "#1A88E6",
+      "pressed": "#0063B1"
+    },
+    "border": {
+      "subtle": "#E2E2E2",
+      "strong": "#C8C8C8"
+    },
+    "state": {
+      "success": "#107C10",
+      "warning": "#C19C00",
+      "danger": "#D13438"
+    }
+  },
+  "radius": {
+    "xs": 4,
+    "sm": 6,
+    "md": 10,
+    "lg": 14,
+    "xl": 18
+  },
+  "spacing": {
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "7": 32
+  },
+  "shadow": {
+    "sm": "0 2 8 rgba(0,0,0,0.10)",
+    "md": "0 8 24 rgba(0,0,0,0.16)",
+    "lg": "0 16 48 rgba(0,0,0,0.20)"
+  }
+}

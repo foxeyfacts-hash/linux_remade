@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Performance Mode
+Exec=pkexec /usr/local/bin/win11-mode performance
+Icon=cpu
+Categories=System;Settings;

@@ -1,0 +1,7 @@
+[General]
+ViewMode=Details
+ShowFullPath=true
+ShowSelectionToggle=true
+
+[PreviewSettings]
+Plugins=apkthumbnail;directorythumbnail;dpopreview;ffmpegthumbs;gsthumbnail;imagethumbnail;jpegthumbnail;svgthumbnail

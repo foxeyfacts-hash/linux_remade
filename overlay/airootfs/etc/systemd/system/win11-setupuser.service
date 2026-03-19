@@ -1,0 +1,12 @@
+[Unit]
+Description=Win11Craft setup user for first boot
+Before=display-manager.service
+ConditionPathExists=!/var/lib/win11/setupuser.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/win11-setupuser
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical.target

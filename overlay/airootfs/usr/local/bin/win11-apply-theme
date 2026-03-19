@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+THEME_INPUT="${1:-}"
+THEME_FILE="$HOME/.config/win11/theme"
+
+if [ -z "$THEME_INPUT" ] && [ -f "$THEME_FILE" ]; then
+  THEME_INPUT="$(cat "$THEME_FILE")"
+fi
+
+if [ -z "$THEME_INPUT" ]; then
+  THEME_INPUT="win11"
+fi
+
+case "$THEME_INPUT" in
+  win11-dark)
+    kwriteconfig5 --file kdeglobals --group General --key ColorScheme "BreezeDark"
+    ;;
+  *)
+    kwriteconfig5 --file kdeglobals --group General --key ColorScheme "Win11Light"
+    ;;
+esac
+
+kwriteconfig5 --file kdeglobals --group KDE --key LookAndFeelPackage "com.win11.theme"

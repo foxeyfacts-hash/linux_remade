@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+OUT=/var/log/win11-hw-info.txt
+mkdir -p /var/log /var/lib/win11
+
+{
+  echo "== PCI =="
+  lspci -nn
+  echo
+  echo "== CPU =="
+  lscpu
+  echo
+  echo "== Memory =="
+  free -h
+  echo
+  echo "== Disks =="
+  lsblk
+} > "$OUT"
+
+touch /var/lib/win11/hw-detect.done

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Notepad
+Exec=kwrite
+Icon=accessories-text-editor
+Categories=Utility;TextEditor;

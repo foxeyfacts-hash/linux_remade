@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Software Center
+Exec=plasma-discover
+Icon=org.kde.discover
+Categories=System;PackageManager;

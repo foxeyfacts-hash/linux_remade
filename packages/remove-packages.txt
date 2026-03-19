@@ -1,0 +1,1 @@
+# Add package names here to remove them from packages.x86_64

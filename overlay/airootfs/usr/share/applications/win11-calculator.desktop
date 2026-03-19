@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Calculator
+Exec=kcalc
+Icon=accessories-calculator
+Categories=Utility;Calculator;

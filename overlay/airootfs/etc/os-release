@@ -1,0 +1,10 @@
+NAME="Win11Craft OS"
+PRETTY_NAME="Win11Craft OS"
+ID=win11craft
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="1;34"
+HOME_URL="https://example.invalid"
+DOCUMENTATION_URL="https://example.invalid"
+SUPPORT_URL="https://example.invalid"
+BUG_REPORT_URL="https://example.invalid"

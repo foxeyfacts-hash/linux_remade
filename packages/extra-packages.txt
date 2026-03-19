@@ -1,0 +1,61 @@
+# Kernel and performance
+linux-zen
+linux-zen-headers
+dkms
+zram-generator
+
+# Graphics and Vulkan
+mesa
+lib32-mesa
+vulkan-icd-loader
+lib32-vulkan-icd-loader
+vulkan-radeon
+vulkan-intel
+vulkan-tools
+nvidia-dkms
+nvidia-utils
+lib32-nvidia-utils
+nvidia-settings
+
+# Gaming
+gamemode
+mangohud
+lib32-mangohud
+steam
+lutris
+wine
+winetricks
+
+# Minecraft
+prismlauncher
+jdk-openjdk
+jre-openjdk
+
+# UI and apps
+kvantum-qt5
+kvantum-qt6
+kcalc
+kwrite
+discover
+flatpak
+
+# System tools
+ufw
+timeshift
+btrfs-progs
+
+# Media tools
+obs-studio
+kdenlive# Networking utils
+curl
+jq
+# Fonts
+ttf-jetbrains-mono
+noto-fonts
+# Bootloader
+grub
+os-prober
+# KDE tools
+kdialog
+kde-cli-tools
+qt5-tools

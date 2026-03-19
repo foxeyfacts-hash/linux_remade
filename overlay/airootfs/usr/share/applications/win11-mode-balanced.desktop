@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Balanced Mode
+Exec=pkexec /usr/local/bin/win11-mode balanced
+Icon=preferences-system-performance
+Categories=System;Settings;

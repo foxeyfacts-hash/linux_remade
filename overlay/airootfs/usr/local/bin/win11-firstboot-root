@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+USERNAME=""
+PASSWORD=""
+MODE="balanced"
+THEME="win11"
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --username) USERNAME="$2"; shift 2 ;;
+    --password) PASSWORD="$2"; shift 2 ;;
+    --mode) MODE="$2"; shift 2 ;;
+    --theme) THEME="$2"; shift 2 ;;
+    *) shift ;;
+  esac
+done
+
+if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ]; then
+  echo "Missing username or password" >&2
+  exit 1
+fi
+
+if [ "$USERNAME" = "setup" ]; then
+  echo "Username cannot be 'setup'" >&2
+  exit 1
+fi
+
+if id "$USERNAME" >/dev/null 2>&1; then
+  echo "User already exists: $USERNAME" >&2
+  exit 1
+fi
+
+useradd -m -k /etc/skel -s /bin/bash -G wheel,games "$USERNAME"
+echo "$USERNAME:$PASSWORD" | chpasswd
+
+# Store selected mode and theme for first login
+install -d "/home/$USERNAME/.config/win11"
+echo "$MODE" > "/home/$USERNAME/.config/win11/mode"
+echo "$THEME" > "/home/$USERNAME/.config/win11/theme"
+
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.config/win11"
+
+# Copy Prism Launcher instance template
+INSTANCE_SRC="/usr/share/win11/minecraft/instance"
+INSTANCE_DST="/home/$USERNAME/.local/share/PrismLauncher/instances/Win11Craft"
+if [ -d "$INSTANCE_SRC" ]; then
+  mkdir -p "$INSTANCE_DST"
+  cp -R "$INSTANCE_SRC/." "$INSTANCE_DST/"
+  chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.local/share/PrismLauncher"
+fi
+
+# Disable autologin and cleanup privileges
+rm -f /etc/sddm.conf.d/00-win11-autologin.conf
+rm -f /etc/polkit-1/rules.d/49-win11-firstboot.rules
+
+# Remove setup user if it exists
+if id setup >/dev/null 2>&1; then
+  userdel -r setup || true
+fi
+
+mkdir -p /var/lib/win11
+touch /var/lib/win11/firstboot.done
+
+exit 0

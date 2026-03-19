@@ -1,0 +1,14 @@
+{
+  "KPlugin": {
+    "Id": "com.win11.theme",
+    "Name": "Win11Craft",
+    "Description": "Windows 11 style look and feel for Plasma",
+    "Version": "1.0",
+    "License": "GPL-2.0+",
+    "Authors": [
+      { "Name": "Win11Craft Team" }
+    ]
+  },
+  "X-KDE-PluginInfo-Name": "com.win11.theme",
+  "X-KDE-ServiceTypes": [ "Plasma/LookAndFeel" ]
+}

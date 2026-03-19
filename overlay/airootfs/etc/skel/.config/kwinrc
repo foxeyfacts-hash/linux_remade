@@ -1,0 +1,14 @@
+[Compositing]
+Enabled=true
+Backend=OpenGL
+GLCore=true
+OpenGLIsUnsafe=false
+
+[Plugins]
+blurEnabled=true
+contrastEnabled=true
+slidingpopupsEnabled=true
+
+[org.kde.kdecoration2]
+library=org.kde.breeze
+theme=org.kde.breeze

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Win11Craft First Boot
+Exec=/usr/local/bin/win11-firstboot
+OnlyShowIn=KDE;
+X-KDE-autostart-phase=1

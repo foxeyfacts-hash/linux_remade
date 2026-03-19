@@ -1,0 +1,34 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      options: --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare pacman keyring
+        run: |
+          pacman -Sy --noconfirm archlinux-keyring
+          pacman -Syu --noconfirm
+
+      - name: Install build deps
+        run: |
+          pacman -S --noconfirm archiso git rsync squashfs-tools sudo
+
+      - name: Build ISO
+        run: |
+          chmod +x scripts/*.sh
+          ./scripts/build-iso-ci.sh
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: win11craft-iso
+          path: EndeavourOS-ISO/out/*.iso

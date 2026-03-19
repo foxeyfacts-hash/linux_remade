@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MC_VERSION="${1:-1.20.4}"
+LOADER="${2:-fabric}"
+INSTANCE_MODS_DIR="${3:-$HOME/.local/share/PrismLauncher/instances/Win11Craft/.minecraft/mods}"
+
+mkdir -p "$INSTANCE_MODS_DIR"
+
+PROJECTS=(sodium lithium starlight)
+
+for project in "${PROJECTS[@]}"; do
+  url=$(curl -s "https://api.modrinth.com/v2/project/${project}/version?game_versions=[\"${MC_VERSION}\"]&loaders=[\"${LOADER}\"]" | jq -r '.[0].files[0].url')
+  if [ -n "$url" ] && [ "$url" != "null" ]; then
+    echo "Downloading $project"
+    curl -L "$url" -o "$INSTANCE_MODS_DIR/${project}.jar"
+  else
+    echo "No version found for $project ($MC_VERSION/$LOADER)"
+  fi
+done
+
+echo "Done. Mods installed to: $INSTANCE_MODS_DIR"

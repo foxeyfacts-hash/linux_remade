@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Backup and Restore
+Exec=timeshift-gtk
+Icon=drive-harddisk
+Categories=System;Settings;

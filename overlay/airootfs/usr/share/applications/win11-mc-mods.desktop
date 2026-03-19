@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Install Minecraft Performance Mods
+Exec=/usr/local/bin/win11-mc-mods
+Icon=minecraft
+Categories=Game;
+Terminal=true

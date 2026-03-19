@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -f /var/lib/win11/setupuser.done ]; then
+  exit 0
+fi
+
+mkdir -p /var/lib/win11
+
+if ! id setup >/dev/null 2>&1; then
+  useradd -m -k /etc/skel -s /bin/bash -G wheel,games setup
+  passwd -d setup >/dev/null 2>&1 || true
+fi
+
+touch /var/lib/win11/setupuser.done

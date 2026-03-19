@@ -1,0 +1,18 @@
+[General]
+ColorScheme=Win11Light
+font=Segoe UI Variable,10,-1,5,50,0,0,0,0,0
+fixed=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+menuFont=Segoe UI Variable,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Segoe UI Variable,9,-1,5,50,0,0,0,0,0
+toolBarFont=Segoe UI Variable,10,-1,5,50,0,0,0,0,0
+XftHintStyle=hintslight
+XftSubPixel=rgb
+
+[KDE]
+LookAndFeelPackage=com.win11.theme
+
+[Icons]
+Theme=breeze
+
+[WM]
+frame=Win11Light

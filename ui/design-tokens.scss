@@ -1,0 +1,40 @@
+:root {
+  --font-primary: "Segoe UI Variable";
+  --font-fallback: "Noto Sans", "Cantarell", sans-serif;
+
+  --bg-base: #f3f3f3;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f7f7f7;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+
+  --accent-primary: #0078d4;
+  --accent-hover: #1a88e6;
+  --accent-pressed: #0063b1;
+
+  --border-subtle: #e2e2e2;
+  --border-strong: #c8c8c8;
+
+  --success: #107c10;
+  --warning: #c19c00;
+  --danger: #d13438;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.20);
+}

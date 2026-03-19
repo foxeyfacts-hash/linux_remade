@@ -1,0 +1,11 @@
+[Unit]
+Description=Win11Craft hardware detection
+After=multi-user.target
+ConditionPathExists=!/var/lib/win11/hw-detect.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/win11-hw-detect
+
+[Install]
+WantedBy=multi-user.target

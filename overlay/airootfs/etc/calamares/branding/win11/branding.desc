@@ -1,0 +1,14 @@
+---
+componentName: "win11"
+welcomeStyleCalamares: true
+
+strings:
+  productName: "Win11Craft OS"
+  shortProductName: "Win11Craft"
+  version: "1.0"
+  shortVersion: "1.0"
+  versionedName: "Win11Craft OS 1.0"
+  shortVersionedName: "Win11Craft 1.0"
+
+images:
+  productLogo: "branding.svg"
