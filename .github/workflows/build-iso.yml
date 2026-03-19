@@ -5,6 +5,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -32,3 +34,12 @@ jobs:
         with:
           name: win11craft-iso
           path: EndeavourOS-ISO/out/*.iso
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "win11craft-${{ github.run_number }}"
+          name: "Win11Craft build ${{ github.run_number }}"
+          prerelease: true
+          generate_release_notes: true
+          files: EndeavourOS-ISO/out/*.iso
