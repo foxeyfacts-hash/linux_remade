@@ -8,7 +8,6 @@ pacman -Rns --noconfirm linux linux-headers || true
 # Enable services
 systemctl enable sddm
 systemctl enable ufw
-systemctl enable win11-setupuser.service
 systemctl enable win11-hw-detect.service
 
 # Firewall defaults
@@ -29,5 +28,15 @@ fi
 # Default performance mode
 mkdir -p /etc/win11
 echo "balanced" > /etc/win11/mode
+
+# Create default user (no password) and enable passwordless sudo
+DEFAULT_USER="win11"
+if ! id -u "$DEFAULT_USER" >/dev/null 2>&1; then
+  groupadd -f games || true
+  useradd -m -k /etc/skel -s /bin/bash -G wheel,audio,video,storage,games "$DEFAULT_USER"
+  passwd -d "$DEFAULT_USER" >/dev/null 2>&1 || true
+fi
+echo "$DEFAULT_USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/90-win11-default-user
+chmod 0440 /etc/sudoers.d/90-win11-default-user
 
 exit 0

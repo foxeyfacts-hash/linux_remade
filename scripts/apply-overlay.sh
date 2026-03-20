@@ -23,7 +23,6 @@ chmod +x "$EOS_DIR/airootfs/usr/share/win11/scripts/"* || true
 chmod +x "$EOS_DIR/airootfs/etc/skel/.config/plasma-workspace/env/"* || true
 
 mkdir -p "$EOS_DIR/airootfs/etc/systemd/system/graphical.target.wants"
-ln -sf ../win11-setupuser.service "$EOS_DIR/airootfs/etc/systemd/system/graphical.target.wants/win11-setupuser.service"
 mkdir -p "$EOS_DIR/airootfs/etc/systemd/system/multi-user.target.wants"
 ln -sf ../win11-calamares-setup.service "$EOS_DIR/airootfs/etc/systemd/system/multi-user.target.wants/win11-calamares-setup.service"
 
