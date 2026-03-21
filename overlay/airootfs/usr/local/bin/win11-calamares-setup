@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
 # Only in live ISO environment
 if [ ! -d /run/archiso ]; then
   exit 0
 fi
 
-mkdir -p /etc/calamares
-cp -a /usr/share/win11/calamares/. /etc/calamares/
+CAL_DIR="/usr/share/win11/calamares"
+if [ ! -d "$CAL_DIR" ]; then
+  # Avoid failing the boot if the config isn't present
+  exit 0
+fi
 
-touch /etc/calamares/.win11
+mkdir -p /etc/calamares || true
+cp -a "$CAL_DIR/." /etc/calamares/ || true
+touch /etc/calamares/.win11 || true

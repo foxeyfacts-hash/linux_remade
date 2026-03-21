@@ -39,4 +39,13 @@ fi
 echo "$DEFAULT_USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/90-win11-default-user
 chmod 0440 /etc/sudoers.d/90-win11-default-user
 
+# Ensure installed system autologins to the default user
+mkdir -p /etc/sddm.conf.d
+cat > /etc/sddm.conf.d/99-win11-autologin.conf <<EOF
+[Autologin]
+User=${DEFAULT_USER}
+Session=plasmawayland
+Relogin=true
+EOF
+
 exit 0
